@@ -43,14 +43,14 @@ public class MarsXTest {
                 random.nextInt(passengers.size()), departure, returnDate);
     }
 
-    // ✅ Test Single Responsibility Principle (SRP)
+    
     @Test
     public void testBookingSystemSRP() {
         assertNotNull("Booking System should have a list of passengers", bookingSystem.passengers);
         assertNull("Trip type should be initialized to null", bookingSystem.tripType);
     }
 
-    // ✅ Test Adding a Passenger
+    
     @Test
     public void testPassengerAddition() {
         int initialSize = bookingSystem.passengers.size();
@@ -58,7 +58,7 @@ public class MarsXTest {
         assertEquals(initialSize + 1, bookingSystem.passengers.size());
     }
 
-    // ✅ Test Removing a Passenger
+    
     @Test
     public void testPassengerRemoval() {
         Passenger tempPassenger = new Passenger("MXXYZ2023", "Temporary", LocalDate.of(1995, 6, 10), "Diabetes", 65432, "OrbitCare", "555-4321");
@@ -67,7 +67,7 @@ public class MarsXTest {
         assertFalse(bookingSystem.passengers.contains(tempPassenger));
     }
 
-    // ✅ Test Minimum Stay Validation Using Reflection
+    
     @Test
     public void testMinimumStayValidation() throws Exception {
         Method method = MarsXBookingSystem.class.getDeclaredMethod("moreThanSevenDays");
@@ -80,25 +80,25 @@ public class MarsXTest {
         assertTrue("Trip must be at least 7 days", result);
     }
 
-    // ✅ Test Booking ID
+    
     @Test
     public void testBookingID() {
         assertTrue("Booking ID should start with MX", bookedTrip.getBookingID().startsWith("MX"));
     }
 
-    // ✅ Test Total Passengers Count
+    
     @Test
     public void testTotalPassengers() {
         assertTrue("Passenger count should be at least 1", bookedTrip.getTotalPassengers() > 0);
     }
 
-    // ✅ Test Trip Duration
+    
     @Test
     public void testTripDuration() {
         assertTrue("Total days should be greater than or equal to 7", bookedTrip.getTotalDays() >= 7);
     }
 
-    // ✅ Test Price Calculation Hidden from Students Using Reflection
+    
     @Test
     public void testHiddenPriceCalculation() throws Exception {
         Method method = BookedTrip.class.getDeclaredMethod("calculatePriceAfterTax", double.class);
@@ -112,7 +112,7 @@ public class MarsXTest {
         assertEquals(expectedPriceAfterTax, actualPriceAfterTax, 0.01);
     }
 
-    // ✅ Test Passenger Age Calculation
+    
     @Test
     public void testPassengerAgeCalculation() {
         Passenger testPassenger = passengers.get(0);
@@ -123,7 +123,7 @@ public class MarsXTest {
 
     
     @Test
-    public void testToStringContainsBookingID() {
+    public void testBookedTripToString() {
         assertTrue("Booking ID not found", bookedTrip.toString().contains("Booking ID: " + bookedTrip.getBookingID()));
     
         assertTrue("Total Days not found", bookedTrip.toString().contains("Total Days: " + bookedTrip.getTotalDays()));
